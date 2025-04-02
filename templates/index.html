@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdleAI Trainer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <div id="cookie-notification" class="cookie-notification">
+        <div class="cookie-content">
+            <p>🍪 This website uses cookies to enhance your gaming experience and save your progress. By continuing to play, you agree to our cookie policy.</p>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="button button-primary">Accept</button>
+                <button id="manage-cookies" class="button button-secondary">Manage Cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="top-navigation">
+        <div class="nav-links">
+            <a href="#" id="nav-about" class="nav-item">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#" id="nav-changelog" class="nav-item">
+                <i class="fas fa-list"></i> Changelog
+            </a>
+            <a href="https://github.com/xenovative/idleai/issues" target="_blank" id="nav-feedback" class="nav-item">
+                <i class="fas fa-comment-dots"></i> Feedback
+            </a>
+            <div class="nav-social-group">
+                <a href="#" class="nav-item nav-social">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                </a>
+                <a href="https://www.instagram.com/xenovative" target="_blank" class="nav-item nav-social">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/xenovative" target="_blank" class="nav-item nav-social">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://xenovative-ltd.com" target="_blank" class="nav-item nav-xenovative">
+                    <img src="static/xeno-octopus.svg" alt="Xenovative Limited" class="xeno-logo">
+                    Xenovative Limited
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='idleaiicon.png') }}" alt="IdleAI Logo" class="logo-icon">
+                    <h1>IdleAI</h1>
+                </div>
+                <p class="subtitle">The AGI moment is just around the corner! (Or maybe not)</p>
+            </div>
+        </header>
+
+        <div class="app-layout">
+            <aside class="sidebar">
+                <div class="sidebar-tabs">
+                    <div class="sidebar-tab active" data-tab="upgrades">R&D</div>
+                    <div class="sidebar-tab" data-tab="milestones">Capabilities</div>
+                    <div class="sidebar-tab" data-tab="controls">Controls</div>
+                    <div class="sidebar-tab" data-tab="stats">Stats</div>
+                </div>
+                
+                <div class="card sidebar-content">
+                    <div class="tab-content active" id="upgrades-tab">
+                        <h2><i class="fas fa-flask"></i> Research & Development</h2>
+                        <div id="upgrade-list">
+                            <!-- Upgrade buttons will be injected here by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="milestones-tab">
+                        <h2><i class="fas fa-trophy"></i> AI Capabilities</h2>
+                        <div id="milestone-list">
+                            <!-- Milestones will be injected here by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="controls-tab">
+                        <h2><i class="fas fa-cog"></i> Controls</h2>
+                        <div class="theme-toggle-container">
+                            <label class="theme-label">Dark Theme</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="theme-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="theme-toggle-container">
+                            <label class="theme-label">Sound Effects</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="sound-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button id="save-button" class="button button-secondary">Save Progress</button>
+                        <button id="reset-button" class="button button-danger">Reset Game</button>
+                        <button id="clear-storage-button" class="button button-danger">Clear Storage & Reload</button>
+                        <button id="force-init-button" class="button button-primary">Force Initialize Game</button>
+                    </div>
+                    
+                    <div class="tab-content" id="stats-tab">
+                        <h2><i class="fas fa-chart-bar"></i> Game Statistics</h2>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h3>Total Code Written</h3>
+                                <div class="stat-value"><span id="total-code-written">0</span> lines</div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Total Devs Hired</h3>
+                                <div class="stat-value"><span id="total-devs-hired">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Total Coffee Consumed</h3>
+                                <div class="stat-value"><span id="total-coffee-consumed">0</span> cups</div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Total Electricity Consumed</h3>
+                                <div class="stat-value"><span id="total-electricity-consumed">0</span> kWh</div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Training Cycles</h3>
+                                <div class="stat-value"><span id="total-training-cycles">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Datasets Collected</h3>
+                                <div class="stat-value"><span id="total-dataset-collected">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Bugs Squashed</h3>
+                                <div class="stat-value"><span id="total-bugs-squashed">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Stack Overflow Visits</h3>
+                                <div class="stat-value"><span id="total-stack-overflow-visits">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Coffee Spilled</h3>
+                                <div class="stat-value"><span id="total-coffee-spilled">0</span> cups</div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Keyboards Destroyed</h3>
+                                <div class="stat-value"><span id="total-keyboards-destroyed">0</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Time Lapsed</h3>
+                                <div class="stat-value"><span id="total-time-lapsed">00:00:00</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Intelligence Index</h3>
+                                <div class="stat-value"><span id="intelligence-index">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="top-stats">
+                    <div class="resource-box">
+                        <h3>Parameters</h3>
+                        <div class="value"><span id="parameters">0</span></div>
+                        <div class="rate"><span id="parameters-per-second">0</span>/sec</div>
+                    </div>
+                    <div class="resource-box">
+                        <h3>Funding</h3>
+                        <div class="value"><span id="funding">0</span></div>
+                        <div class="rate"><span id="funding-per-second">0</span>/sec</div>
+                    </div>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-item card">
+                        <h3><i class="fas fa-microchip"></i> Compute</h3>
+                        <p><span id="compute-units">10</span> / <span id="max-compute-units">10</span> <small>Recharge: <span id="compute-recharge-rate">1</span>/sec</small></p>
+                        <button id="manual-compute-button" class="button button-primary">Write Brilliant Code (+1)</button>
+                    </div>
+
+                    <div class="resource-item card">
+                        <h3><i class="fas fa-database"></i> Datasets</h3>
+                        <p><span id="datasets">0</span> / <span id="dataset-capacity">100</span> <small>Quality: <span id="dataset-quality">1</span>x</small></p>
+                        <div class="action-cost">Cost: <span id="dataset-cost">5</span> compute</div>
+                        <button id="collect-dataset-button" class="button button-secondary">Collect Dataset</button>
+                    </div>
+
+                    <div class="resource-item card">
+                        <h3><i class="fas fa-brain"></i> Training</h3>
+                        <p>Efficiency: <span id="training-efficiency">1</span>x</p>
+                        <div id="training-progress" class="progress-bar">
+                            <div class="progress-fill"></div>
+                            <span class="progress-text">Not training</span>
+                        </div>
+                        <div class="action-cost">Cost: <span id="training-cost">10</span> compute/epoch</div>
+                        <div class="training-controls">
+                            <input type="number" id="epoch-count" min="1" max="100" value="1" class="input-field">
+                            <button id="start-training-button" class="button button-primary">Start Training</button>
+                        </div>
+                    </div>
+
+                    <div class="resource-item card">
+                        <h3><i class="fas fa-file-alt"></i> Research Papers</h3>
+                        <p>Published: <span id="papers-published">0</span> <small>Funding: <span id="paper-funding">N/A</span></small></p>
+                        <div id="paper-cooldown" class="progress-bar">
+                            <div class="progress-fill"></div>
+                            <span class="progress-text">Ready</span>
+                        </div>
+                        <button id="publish-paper-button" class="button button-secondary">Publish Paper</button>
+                    </div>
+                </div>
+
+                <div class="card" id="messages">
+                    <h2><i class="fas fa-terminal"></i> AI Development Log</h2>
+                    <div id="message-container" class="log-box">
+                        <p>Welcome to your AI training facility!</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="app-footer">
+            <p>Remember: No matter how many parameters you add, true AGI remains mathematically impossible... but that won't stop us from trying!</p>
+        </footer>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-graduation-cap"></i> Welcome to IdleAI!</h2>
+            </div>
+            <div class="modal-body">
+                <div id="company-name-screen" class="tutorial-screen active">
+                    <h3>Let's get started!</h3>
+                    <p>First, what's the name of your AI research company?</p>
+                    <input type="text" id="company-name-input" class="input-field" placeholder="e.g., Anthropomorphic, ClosedAI, Incoherent...">
+                    <p class="form-hint">This will be used in messages throughout the game.</p>
+                    <button id="company-name-next" class="button button-primary">Next</button>
+                </div>
+                
+                <div id="model-name-screen" class="tutorial-screen">
+                    <h3>Name your flagship AI model</h3>
+                    <p>What will you call your Large Language Model?</p>
+                    <input type="text" id="model-name-input" class="input-field" placeholder="e.g., LLaMa, Bard, ChatSonic...">
+                    <p class="form-hint">This will be used in messages throughout the game.</p>
+                    <button id="model-name-next" class="button button-primary">Next</button>
+                </div>
+                
+                <div id="tutorial-screen-1" class="tutorial-screen">
+                    <h3>How to Play</h3>
+                    <p>Your goal is to build the most advanced AI model by accumulating parameters (or at least convince investors you're doing that).</p>
+                    <ul class="tutorial-list">
+                        <li><strong>Write Code</strong> to generate compute units (coffee helps)</li>
+                        <li><strong>Collect Datasets</strong> to train your model (quality varies wildly)</li>
+                        <li><strong>Train your Model</strong> to gain parameters (mostly just numbers going up)</li>
+                        <li><strong>Publish Papers</strong> to gain funding (no one reads them anyway)</li>
+                    </ul>
+                    <button id="tutorial-next-1" class="button button-primary">Next</button>
+                </div>
+                
+                <div id="tutorial-screen-2" class="tutorial-screen">
+                    <h3>Research & Development</h3>
+                    <p>Burn through funding on these questionably effective upgrades:</p>
+                    <ul class="tutorial-list">
+                        <li>Hire researchers (they mostly browse social media)</li>
+                        <li>Improve compute capacity (fancy blinking lights included)</li>
+                        <li>Enhance datasets (50% less cat pictures, maybe)</li>
+                    </ul>
+                    <button id="tutorial-next-2" class="button button-primary">Next</button>
+                </div>
+                
+                <div id="tutorial-screen-3" class="tutorial-screen">
+                    <h3>AI Capabilities</h3>
+                    <p>Watch your AI evolve from "glorified calculator" to "existential threat"!</p>
+                    <p>Each milestone comes with funding and a vague sense of impending doom.</p>
+                    <p>Can you reach AGI? (Spoiler: No, but investors don't know that)</p>
+                    <button id="tutorial-finish" class="button button-primary">Start the Inevitable!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Milestone/Unlock Popup -->
+    <div id="achievement-modal" class="achievement-modal">
+        <div class="achievement-modal-content">
+            <div class="achievement-modal-header">
+                <h2 id="achievement-title"><i class="fas fa-trophy"></i> Achievement Unlocked!</h2>
+                <button class="close-button" id="achievement-close-x">&times;</button>
+            </div>
+            <div id="achievement-content">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button id="achievement-close" class="button button-primary">Awesome!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
