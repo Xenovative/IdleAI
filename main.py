@@ -334,4 +334,7 @@ def reset_game():
     return jsonify({"success": True})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(        ssl_context=(
+            "/etc/letsencrypt/live/idleai.xenovative-ltd.com/fullchain.pem",
+            "/etc/letsencrypt/live/idleai.xenovative-ltd.com/privkey.pem"
+        ), host='0.0.0.0', port=5000, debug=True) #Updated for HTTPS
