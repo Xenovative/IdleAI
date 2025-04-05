@@ -1,29 +1,29 @@
-# IdleAI: Train an LLM to AGI
+# IdleAI: The AGI Moment is Just around the Corner (Maybe not)
 
-## About the Game
+## About This Totally Legitimate Venture
 
-IdleAI is an engaging incremental/clicker game where you train a Language Model (LLM) towards Artificial General Intelligence (AGI). Your goal is to click, upgrade, and automate the process of increasing model parameters.
+IdleAI is a slightly questionable incremental/clicker game where you pretend to train an LLM toward AGI while mostly just watching numbers go up. Your goal is to click buttons, burn investor money, and convince everyone you're making progress.
 
-## Game Mechanics
+## "Advanced" Game Mechanics
 
-- **Core Gameplay**: Click to generate parameters
-- **Automators**: Purchase various automators to generate parameters automatically
-- **Upgrades**: Exponential scaling upgrades to multiply parameter generation
-- **Progression**: Track your LLM's journey towards becoming an AGI
+- **Core "Innovation"**: Click furiously to generate meaningless parameters
+- **Automators**: Hire overpriced engineers who mostly browse social media
+- **Upgrades**: Purchase fancy equipment with blinking lights that impresses investors
+- **Progression**: Achieve "breakthroughs" that are suspiciously similar to existing tech
 
-## How to Play
+## How to "Disrupt" the Industry
 
-1. **Click Training**: Click the main button to generate initial parameters
-2. **Purchase Automators**: Buy automation tools to generate parameters over time
-3. **Upgrade Strategically**: Invest in upgrades to boost parameter generation
-4. **Track Progress**: Watch your LLM evolve towards AGI through milestone indicators
+1. **Click Training**: Smash that button like your funding depends on it (it does)
+2. **Hire "Talent"**: Acquire PhD graduates who will immediately forget everything they learned
+3. **Upgrade Strategically**: Buy things with impressive names and vague functionality
+4. **Track Progress**: Generate charts that always trend upward regardless of actual performance
 
 ## Features
 
-- HuggingFace-inspired UI
-- Sound effects
-- Milestone tracking
-- Multiple automator types
+- UI that looks just technical enough to fool venture capitalists
+- Satisfying sound effects to mask the emptiness of progress
+- Milestone celebrations for achievements of dubious significance
+- Multiple ways to burn through funding at alarming rates
 
 ## Giving Feedback
 
@@ -45,10 +45,4 @@ We value your input! You can:
 
 Contributions are welcome! Please check our GitHub repository for guidelines.
 
-## License
-
-[Add your license information here]
-
 ## Created by Xenovative Limited
-
-Embark on the journey of training an LLM to AGI! 🤖📈
